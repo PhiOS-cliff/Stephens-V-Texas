@@ -7,16 +7,21 @@
     <style>
         :root {
             --bg: #0a0c14;
+            --card: #111827;
             --accent: #3b82f6;
             --silver: #9ca3af;
+            --silver-dark: #6b7280;
             --text: #e2e8f0;
         }
         body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 60px 20px; line-height: 1.6; }
         .paper { max-width: 750px; margin: 0 auto; }
-        h1 { color: var(--accent); margin-bottom: 40px; }
-        h2 { color: var(--silver); border-bottom: 1px solid var(--silver); padding-bottom: 10px; margin-top: 50px; font-size: 1.2rem; }
+        h1 { color: var(--accent); margin-bottom: 40px; text-align: center; }
+        h2 { color: var(--silver); border-bottom: 1px solid var(--silver-dark); padding-bottom: 10px; margin-top: 50px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em; }
+        ul { padding-left: 20px; color: var(--silver); }
+        li { margin-bottom: 10px; }
+        strong { color: var(--text); }
         .footer { text-align: center; color: var(--silver); padding-top: 50px; margin-top: 50px; border-top: 1px solid #334155; }
-        .footer a { color: var(--text); margin: 0 10px; }
+        .footer a { color: var(--text); margin: 0 10px; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -27,25 +32,26 @@
     <p>Stephens v. Texas is an open-source educational methodology. We believe that those who benefit from utilizing this system will contribute in the measure it was successfully implemented.</p>
     <p>Your contributions allow us to continue our auditing work across the county, maintain the integrity of this archive, and expand the framework’s capabilities. We are building the tools necessary for citizens to audit, understand, and navigate institutional conditions.</p>
     <p><strong>Operational Priorities:</strong> Public Record Preservation, Framework Development, Research & Auditing, and Accessibility.</p>
-    <a href="#">[ Contribute to the Mission ]</a>
+    <a href="#" style="color: var(--accent);">[ Contribute to the Mission ]</a>
 
     <h2>Observations & Feedback</h2>
     <p>Have insights on the framework? Spotted a pattern in institutional response? Share your observations here.</p>
     <form action="#" method="POST">
-        <textarea rows="5" style="width: 100%; background: #111827; border: 1px solid #6b7280; color: white; padding: 10px;"></textarea>
-        <p style="font-size: 0.7rem; color: #9ca3af;">*Note: This portal is for feedback only. No attachments accepted. Do not submit personal case details.</p>
-        <button type="submit" style="background: var(--accent); color: white; border: none; padding: 10px 20px;">SUBMIT OBSERVATION</button>
+        <textarea rows="5" style="width: 100%; background: var(--card); border: 1px solid var(--silver-dark); color: white; padding: 10px; border-radius: 8px;"></textarea>
+        <p style="font-size: 0.7rem; color: var(--silver);">*Note: This portal is for feedback only. No attachments accepted. Do not submit personal case details.</p>
+        <button type="submit" style="background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">SUBMIT OBSERVATION</button>
     </form>
 
     <h2>Legal Notice & Disclaimer</h2>
-    <p>Stephens v. Texas is an educational treatise and public record framework.</p>
+    <p>Stephens v. Texas is an educational treatise and public record framework. This work provides a methodology for organizing information, preserving public records, and identifying institutional responsibilities.</p>
     <ul>
         <li><strong>No Legal Measure:</strong> This framework imparts no legal measure, authority, or procedural standing.</li>
-        <li><strong>No Legal Advice:</strong> Nothing contained in this work constitutes legal advice, engineering advice, or representation.</li>
-        <li><strong>Non-Judicial Application:</strong> This framework is not intended for use within a legal process after a consequence has occurred.</li>
-        <li><strong>No Agency Relationship:</strong> Use of this site does not create an attorney-client or fiduciary relationship.</li>
-        <li><strong>Objective:</strong> The objective is mitigation, not judgment.</li>
+        <li><strong>No Legal Advice:</strong> Nothing contained in this work constitutes legal advice, engineering advice, professional consulting, or legal representation.</li>
+        <li><strong>Non-Judicial Application:</strong> This framework is designed for institutional awareness, oversight, and mitigation. It is not intended for use within a legal process after a consequence has occurred. Stephens v. Texas does not belong in an after-the-fact court setting.</li>
+        <li><strong>No Agency Relationship:</strong> Use of this site does not create an attorney-client, consulting, or fiduciary relationship.</li>
+        <li><strong>Objective:</strong> The objective of this framework is mitigation, not judgment.</li>
     </ul>
+    <p>All decisions, filings, communications, and actions taken by users remain the sole responsibility of the user.</p>
 
     <div class="footer">
         <a href="index.html">Home</a> | <a href="notice.html">Notice Board</a> | <a href="about.html">About & Legal</a>
