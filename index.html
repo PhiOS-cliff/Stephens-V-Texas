@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stephens v. Texas</title>
+    <title>Procedural Kernel</title>
     <style>
         :root {
             --bg: #0a0c14;
@@ -14,125 +14,256 @@
             --text: #e2e8f0;
             --muted: #94a3b8;
         }
-        body { font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 60px 20px; background: var(--bg); color: var(--text); line-height: 1.6; }
-        .paper { max-width: 900px; margin: 0 auto; }
-        
-        .header { text-align: center; margin-bottom: 50px; }
-        .header h1 { color: var(--accent); font-size: 3.5rem; margin: 0 0 10px; letter-spacing: -2px; }
-        .subtitle { font-size: 1.25rem; color: var(--text); margin-bottom: 30px; }
-        
-        .methodology { 
-            font-size: 1rem; color: var(--muted); max-width: 750px; margin: 0 auto 30px; 
-            padding: 25px; border-top: 1px solid var(--silver-dark); border-bottom: 1px solid var(--silver-dark);
+        body { 
+            font-family: 'Inter', system-ui, sans-serif; 
+            margin: 0; 
+            padding: 60px 20px; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+        }
+        .paper { max-width: 1000px; margin: 0 auto; }
+       
+        .header { 
+            text-align: center; 
+            margin-bottom: 60px; 
+        }
+        .header h1 { 
+            color: var(--accent); 
+            font-size: 3.2rem; 
+            margin: 0 0 12px; 
+            letter-spacing: -2px; 
+        }
+        .subtitle { 
+            font-size: 1.35rem; 
+            color: var(--text); 
+            max-width: 720px; 
+            margin: 0 auto 30px; 
+            font-weight: 400;
+        }
+       
+        .methodology {
+            font-size: 1rem; 
+            color: var(--muted); 
+            max-width: 780px; 
+            margin: 0 auto 40px;
+            padding: 25px; 
+            border-top: 1px solid var(--silver-dark); 
+            border-bottom: 1px solid var(--silver-dark);
+            text-align: center;
         }
 
-        .core-section { margin-bottom: 50px; }
-        .core-label { text-align: center; color: var(--silver); text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.75rem; margin-bottom: 25px; }
-        
-        .flow-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 50px; }
-        .box { background: var(--card); border: 1px solid var(--silver-dark); border-radius: 12px; padding: 25px; display: flex; flex-direction: column; align-items: center; }
-        
-        /* Hierarchy Shift: Titles are larger, buttons are secondary */
-        .box h2 { font-size: 1.1rem; color: var(--text); margin-top: 0; margin-bottom: 15px; letter-spacing: 0.05em; font-weight: 600; }
-        .btn { 
-            display: inline-block; background: transparent; border: 1px solid var(--silver-dark); color: var(--silver); 
-            padding: 10px 20px; text-align: center; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 0.75rem; transition: all 0.2s;
+        .core-section { margin-bottom: 60px; }
+        .core-label { 
+            text-align: center; 
+            color: var(--silver); 
+            text-transform: uppercase; 
+            letter-spacing: 0.25em; 
+            font-size: 0.8rem; 
+            margin-bottom: 25px; 
         }
-        .btn:hover { border-color: var(--accent); color: var(--accent); }
-        
-        .apps-section { margin-bottom: 50px; }
-        .apps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .app-card { background: #0f172a; border: 1px solid #334155; padding: 25px; border-radius: 12px; text-align: center; }
-        .app-card h3 { color: var(--accent); font-size: 0.9rem; margin-top: 0; text-transform: uppercase; letter-spacing: 0.05em; }
-        .app-card p { font-size: 0.85rem; color: var(--muted); margin: 10px 0 0; }
-
-        .outcome-bar { 
-            border-top: 1px solid var(--silver-dark); border-bottom: 1px solid var(--silver-dark); 
-            padding: 30px 0; margin: 20px 0 30px; text-align: center; letter-spacing: 0.2em; font-size: 1rem; color: var(--text);
+       
+        .flow-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 24px; 
+            margin-bottom: 50px; 
         }
-        .outcome-bar span { color: var(--accent); margin: 0 15px; font-weight: bold; }
-        
-        .how-to-section { text-align: center; color: var(--text); max-width: 750px; margin: 0 auto 40px; }
-        .how-to-section h3 { color: var(--silver); margin-bottom: 20px; }
-        .how-to-section ul { padding: 0; list-style-type: none; color: var(--muted); }
-        .how-to-section li { margin-bottom: 10px; }
+        .box { 
+            background: var(--card); 
+            border: 1px solid var(--silver-dark); 
+            border-radius: 12px; 
+            padding: 28px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center;
+        }
+       
+        .box h2 { 
+            font-size: 1.25rem; 
+            color: var(--text); 
+            margin: 0 0 18px; 
+            letter-spacing: 0.05em; 
+            font-weight: 600; 
+        }
+        .btn {
+            display: inline-block; 
+            background: transparent; 
+            border: 1px solid var(--silver-dark); 
+            color: var(--silver);
+            padding: 12px 24px; 
+            text-align: center; 
+            border-radius: 6px; 
+            text-decoration: none; 
+            font-weight: 500; 
+            font-size: 0.85rem; 
+            transition: all 0.2s;
+            margin-top: auto;
+        }
+        .btn:hover { 
+            border-color: var(--accent); 
+            color: var(--accent); 
+        }
+       
+        .demo-box {
+            background: #0f172a;
+            border: 2px dashed var(--accent);
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
+        }
 
-        .footer { text-align: center; color: var(--silver); padding-top: 20px; border-top: 1px solid var(--silver-dark); }
-        .footer a { color: var(--text); margin: 0 10px; text-decoration: none; font-size: 0.9rem; }
+        .apps-section { margin-bottom: 60px; }
+        .apps-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+        }
+        .app-card { 
+            background: #0f172a; 
+            border: 1px solid #334155; 
+            padding: 25px; 
+            border-radius: 12px; 
+        }
+        .app-card h3 { 
+            color: var(--accent); 
+            font-size: 1rem; 
+            margin-top: 0; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+        }
+        .app-card p { 
+            font-size: 0.9rem; 
+            color: var(--muted); 
+            margin: 12px 0 0; 
+        }
+
+        .outcome-bar {
+            border-top: 1px solid var(--silver-dark); 
+            border-bottom: 1px solid var(--silver-dark);
+            padding: 32px 0; 
+            margin: 30px 0 40px; 
+            text-align: center; 
+            letter-spacing: 0.2em; 
+            font-size: 1.1rem; 
+            color: var(--text);
+        }
+        .outcome-bar span { 
+            color: var(--accent); 
+            margin: 0 18px; 
+            font-weight: bold; 
+        }
+       
+        .how-to-section { 
+            text-align: center; 
+            color: var(--text); 
+            max-width: 780px; 
+            margin: 0 auto 50px; 
+        }
+        .how-to-section h3 { 
+            color: var(--silver); 
+            margin-bottom: 24px; 
+        }
+       
+        .footer { 
+            text-align: center; 
+            color: var(--silver); 
+            padding-top: 30px; 
+            border-top: 1px solid var(--silver-dark); 
+        }
+        .footer a { 
+            color: var(--text); 
+            margin: 0 12px; 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+        }
     </style>
 </head>
 <body>
-
 <div class="paper">
     <div class="header">
-        <h1>Stephens v. Texas</h1>
-        <p class="subtitle">A Treatise on Emergency Petitioning, Institutional Responsibility, and Mitigation</p>
+        <h1>PROCEDURAL KERNEL</h1>
+        <p class="subtitle">A condition-classification engine derived from emergency management logic.</p>
         <p class="methodology">
-            The concepts presented here are not new. No new laws are created, and no new precedents are claimed. 
-            This work simply organizes existing systems, procedures, and records into a structure that can be 
-            understood and applied by petitioners, whistleblowers, journalists, auditors, and public officials. 
-            By downloading the core components and analyzing them together, users can identify responsibilities 
-            and preserve an auditable public record from local government through state and federal review.
+            Describe a stalled condition. The Kernel identifies the unresolved pivot point and returns 
+            the smallest verifiable step required to move the matter forward. 
+            It does not assign blame, predict outcomes, or render judgments — it isolates the procedural minimum.
         </p>
     </div>
 
+    <div class="demo-box">
+        <h2 style="color: var(--accent); margin-top: 0;">Test the Kernel</h2>
+        <p style="color: var(--muted); max-width: 600px; margin: 0 auto 20px;">
+            Paste a brief description of any stalled condition (permit, dispute, investigation, institutional failure, etc.)
+        </p>
+        <textarea style="width: 100%; max-width: 620px; height: 110px; background: #1e2937; border: 1px solid var(--silver-dark); color: var(--text); padding: 12px; border-radius: 8px; resize: vertical;" placeholder="Example: Engineering report shows imminent structural failure at public building. Civil emergency declaration filed months ago with no response or mitigation..."></textarea>
+        <br><br>
+        <a href="#" class="btn" style="background: var(--accent); color: white; border: none;">Analyze with Kernel</a>
+    </div>
+
     <div class="core-section">
-        <div class="core-label">Procedural Core: Analyze Components Together</div>
+        <div class="core-label">How the Kernel Works</div>
         <div class="flow-container">
             <div class="box">
-                <h2>MASTER RECORD</h2>
-                <a href="#" class="btn">DOWNLOAD PDF</a>
+                <h2>1. DESCRIBE CONDITION</h2>
+                <p style="color: var(--muted); text-align: center; margin-bottom: 20px;">Provide the facts of the stalled situation.</p>
             </div>
             <div class="box">
-                <h2>TREATISE</h2>
-                <a href="#" class="btn">DOWNLOAD PDF</a>
+                <h2>2. CLASSIFY &amp; MAP</h2>
+                <p style="color: var(--muted); text-align: center; margin-bottom: 20px;">Identifies unresolved conditions, custodianship gaps, dependencies, and bottlenecks.</p>
             </div>
             <div class="box">
-                <h2>PETITIONER'S GUIDE</h2>
-                <a href="#" class="btn">DOWNLOAD PDF</a>
+                <h2>3. PROCEDURAL MINIMUM</h2>
+                <p style="color: var(--muted); text-align: center; margin-bottom: 20px;">Returns the smallest verifiable next step to restore movement.</p>
             </div>
         </div>
     </div>
 
     <div class="apps-section">
-        <div class="core-label">Applications of the Framework</div>
+        <div class="core-label">Who Uses the Kernel</div>
         <div class="apps-grid">
-            <div class="app-card"><h3>Institutional Paralysis</h3><p>When multiple agencies know of a condition but none claim responsibility. The framework reveals exactly where awareness existed, where acknowledgement failed, and where responsibility disappeared.</p></div>
-            <div class="app-card"><h3>Government Whistleblowing</h3><p>When an insider discovers a condition being ignored or mishandled. The framework provides a structured method to preserve an auditable record while navigating institutional resistance.</p></div>
-            <div class="app-card"><h3>Public Safety Emergency</h3><p>When community facilities expose people to preventable harm. The framework converts raw concern into a documented condition with clear responsible parties and action items.</p></div>
-            <div class="app-card"><h3>Corporate or Regulatory Capture</h3><p>When industries influence the agencies meant to regulate them. The framework exposes where responsibility was compromised and builds the record needed to break the cycle.</p></div>
-            <div class="app-card"><h3>Crisis Denial & Delayed Response</h3><p>When leaders prioritize politics over immediate action. The framework documents every point of delay and creates an auditable chain of accountability.</p></div>
-            <div class="app-card"><h3>The Silenced Citizen</h3><p>When ordinary people face gaslighting or bureaucratic runaround. The framework turns ignored voices into a permanent, defensible public record.</p></div>
+            <div class="app-card">
+                <h3>Petitioners &amp; Citizens</h3>
+                <p>Turn general complaints into precise procedural questions. Example: From months of non-response on a public safety hazard to the exact notice or record that forces acknowledgment.</p>
+            </div>
+            <div class="app-card">
+                <h3>Judges &amp; Administrators</h3>
+                <p>Cut through competing narratives. Identify evidentiary imbalances, verification needs, or jurisdictional duties without deciding the merits.</p>
+            </div>
+            <div class="app-card">
+                <h3>Journalists &amp; Investigators</h3>
+                <p>Separate allegations from verifiable conditions. Pinpoint the first discrepancy that must be documented.</p>
+            </div>
+            <div class="app-card">
+                <h3>Executives &amp; Managers</h3>
+                <p>Locate operational constraints in hospitals, corporations, universities, or agencies. Reveal whether the real bottleneck is staffing, process, or information.</p>
+            </div>
         </div>
     </div>
 
     <div class="outcome-bar">
-        RECEIVED <span>→</span> ACKNOWLEDGED <span>→</span> RECOGNIZED <span>→</span> MITIGATED
+        CONDITION <span>→</span> CLASSIFICATION <span>→</span> PROCEDURAL MINIMUM <span>→</span> ADVANCEMENT
     </div>
-    
+
     <div class="how-to-section">
-        <h3>How to Use This</h3>
-        <p>Stephens v. Texas is a unified framework. Download the Master Record, Treatise, and Petitioner's Guide, then upload all three into a new AI session. Each component serves a different purpose:</p>
-        <ul>
-            <li><strong>Master Record</strong>: the source archive</li>
-            <li><strong>Treatise</strong>: the theory and methodology</li>
-            <li><strong>Petitioner's Guide</strong>: the practical application</li>
-        </ul>
-        <p>Individually, each component is useful. Together, they function as a complete procedural GPS. The AI will use the full framework to:</p>
-        <ul>
-            <li>Map the trajectory of a condition through local, state, and federal institutions</li>
-            <li>Identify exactly where awareness, acknowledgement, and recognition stalled or failed</li>
-            <li>Preserve an auditable public record</li>
-            <li>Organize communications and action items</li>
-            <li>Reveal pathways toward mitigation</li>
-        </ul>
+        <h3>Origin &amp; Purpose</h3>
+        <p>The Procedural Kernel was forged in the sustained institutional record of <strong>Stephens v. Texas</strong> (Travis County Cause No. D-1-GN-25-002397 and related proceedings). What began as analysis of emergency petitioning, courthouse continuity, and Chapter 418 intake failures evolved into a portable reasoning engine.</p>
+        <p>It applies emergency-management decision logic — identifying pivot points, custodianship failures, and procedural minimums — across any complex stalled system.</p>
+        
+        <p style="margin-top: 30px; font-size: 0.95rem; color: var(--muted);">
+            <strong>Core Principle:</strong> Every problem has a pivot point. The Kernel isolates it and identifies the smallest verifiable step required to restore movement.
+        </p>
     </div>
 
     <div class="footer">
-        <p>Support the preservation and continued development of this public archive.</p>
-        <a href="index.html">Home</a> | <a href="notice.html">Notice Board</a> | <a href="about.html">About & Legal</a>
+        <p>Stephens v. Texas — Laboratory for the Procedural Kernel</p>
+        <a href="#">Core Documents</a> | 
+        <a href="#">Live Test Examples</a> | 
+        <a href="#">Kernel Prompts</a> | 
+        <a href="#">About &amp; Record</a>
     </div>
 </div>
-
 </body>
 </html>
