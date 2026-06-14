@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emergency Logic Kernel | Bottleneck Detection for Stalled Systems</title>
+  <title>Emergency Logic Kernel | Bottleneck Detection</title>
   <style>
     :root {
       --bg: #07111f;
@@ -313,6 +313,18 @@
     .why-box p:last-child { margin-bottom: 0; }
     .why-box strong { color: var(--text); }
 
+    .activation-copy {
+      display: block;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(7, 17, 31, 0.72);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
     .signal-list {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -329,33 +341,6 @@
       text-align: center;
       font-size: 0.9rem;
     }
-
-    .comparison {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      overflow: hidden;
-    }
-
-    .comparison-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .comparison-row:last-child { border-bottom: 0; }
-
-    .comparison-cell {
-      padding: 20px 24px;
-      color: var(--muted);
-    }
-
-    .comparison-cell:first-child {
-      border-right: 1px solid var(--line);
-      color: var(--dim);
-    }
-
-    .comparison-cell strong { color: var(--white); }
 
     .bar {
       margin: 32px 0 10px;
@@ -400,8 +385,7 @@
     @media (max-width: 720px) {
       .page { width: min(100% - 28px, 1120px); }
       header { padding-top: 48px; }
-      .pillar-grid, .grid-3, .grid-4, .grid-2, .comparison-row { grid-template-columns: 1fr; }
-      .comparison-cell:first-child { border-right: 0; border-bottom: 1px solid var(--line); }
+      .pillar-grid, .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
       .bar { letter-spacing: 0.04em; }
       .signal-list { grid-template-columns: 1fr; }
       footer a { display: inline-block; margin: 5px 8px; }
@@ -414,18 +398,18 @@
       <div class="eyebrow">Emergency Logic Kernel</div>
       <h1>A bottleneck-detection system derived from emergency-management reasoning.</h1>
       <p class="lead">
-        Every stalled system contains a constraint. The Emergency Logic Kernel identifies the bottleneck preventing advancement, isolates the pivot point, and returns the minimum procedural condition required to restore movement.
+        Every complex system contains conditions, dependencies, communication paths, records, authorities, and decision points. The Emergency Logic Kernel identifies the condition governing advancement and returns the procedural minimum associated with that condition.
       </p>
       <div class="hero-rule">
-        Most AI systems answer questions. <span>The Emergency Logic Kernel identifies constraints.</span>
+        <span>Condition Analysis</span> • Constraint Identification • Procedural Minimums • System Advancement
       </div>
     </header>
 
     <section id="downloads">
       <div class="section-title">
-        <div class="label">The Three Pillars</div>
-        <h2>Download the complete operating stack.</h2>
-        <p>The system is organized as three components: the laboratory record, the emergency logic layer, and the portable Kernel.</p>
+        <div class="label">Three Pillars</div>
+        <h2>The complete operating stack.</h2>
+        <p>The Emergency Logic Kernel operates through a three-pillar architecture. Pillar I establishes the laboratory record. Pillar II establishes the emergency logic layer. Pillar III establishes the operating kernel.</p>
       </div>
 
       <div class="pillar-grid">
@@ -433,7 +417,7 @@
           <div class="pillar-kicker">Pillar I</div>
           <h3>Laboratory</h3>
           <div class="pillar-role">Institutional Record</div>
-          <p>Stephens v. Texas is the real-world institutional record where the framework was developed, tested, and refined across public agencies and court systems.</p>
+          <p>The laboratory record documents the development environment through which the Emergency Logic Kernel emerged. The record contains real-world conditions, communications, filings, institutional responses, dependency chains, and escalation paths.</p>
           <div class="file-meta"><strong>PDF</strong> • 46.4 MB</div>
           <a class="button" href="files/[Master][Pillar 1] Laboratory.pdf" download>Download Pillar I</a>
         </article>
@@ -442,7 +426,7 @@
           <div class="pillar-kicker">Pillar II</div>
           <h3>Emergency Logic</h3>
           <div class="pillar-role">Reasoning Layer</div>
-          <p>The logic layer formalizes emergency-management methods for condition analysis, dependency mapping, communication review, and procedural minimum identification.</p>
+          <p>The emergency logic layer formalizes condition analysis, dependency mapping, communication review, custodianship identification, verification review, bottleneck detection, and procedural minimum identification.</p>
           <div class="file-meta"><strong>PDF</strong> • 2.8 MB</div>
           <a class="button" href="files/[Master][Pillar 2] Logic.pdf" download>Download Pillar II</a>
         </article>
@@ -451,7 +435,7 @@
           <div class="pillar-kicker">Pillar III</div>
           <h3>Kernel</h3>
           <div class="pillar-role">Operating Layer</div>
-          <p>The Kernel applies emergency logic across AI systems to identify constraints, bottlenecks, silent nodes, pivot points, and procedural minimums.</p>
+          <p>The kernel applies emergency logic across AI systems. The operating layer performs condition analysis, bottleneck detection, dependency tracing, communication review, pivot-point identification, and procedural minimum generation.</p>
           <div class="file-meta"><strong>PDF</strong> • 42.3 KB</div>
           <a class="button" href="files/[Master][Pillar 3] Kernel.pdf" download>Download Pillar III</a>
         </article>
@@ -459,83 +443,100 @@
 
       <div class="stack-note">
         <div class="equation">46.4 MB <span>→</span> 2.8 MB <span>→</span> 42.3 KB</div>
-        <p>A real-world institutional record distilled into emergency-management logic and ultimately reduced to a portable reasoning kernel.</p>
+        <p>A laboratory record distilled into emergency logic and reduced into a portable operating kernel.</p>
         <a class="button secondary" href="files/Emergency-Logic-Kernel-Complete-Stack.zip" download>Download Complete Stack</a>
       </div>
     </section>
 
-    <section>
+    <section id="activation">
       <div class="section-title">
-        <div class="label">Why it exists</div>
-        <h2>Most stalled systems fail because the bottleneck is hidden inside noise.</h2>
-      </div>
-
-      <div class="why-box">
-        <p>Complex systems produce narratives, assumptions, accusations, opinions, records, metrics, and competing explanations. The Emergency Logic Kernel filters that noise and identifies the condition preventing advancement.</p>
-        <p><strong>It does not determine outcomes. It does not assign blame. It does not render judgments.</strong></p>
-        <p>It identifies constraints, bottlenecks, dependencies, communication failures, custodianship failures, verification gaps, and procedural minimums.</p>
-
-        <div class="signal-list">
-          <div>Bottlenecks</div>
-          <div>Dependencies</div>
-          <div>Silent Nodes</div>
-          <div>Verification Gaps</div>
-          <div>Wrong Metrics</div>
-          <div>False Root Causes</div>
-          <div>Custodianship Failures</div>
-          <div>Procedural Minimums</div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <div class="label">How it works</div>
-        <h2>It finds the procedural needle in the haystack.</h2>
+        <div class="label">Activation</div>
+        <h2>Activate the Emergency Logic Kernel.</h2>
+        <p>Download all three pillars. Open a fresh AI session. Upload Pillar I, Pillar II, and Pillar III. Enter the activation command.</p>
       </div>
 
       <div class="grid-3">
         <div class="card">
           <div class="number">1</div>
-          <h3>Noise</h3>
-          <p>The system begins with records, narratives, assumptions, explanations, and competing claims.</p>
+          <h3>Download</h3>
+          <p>Download Pillar I, Pillar II, and Pillar III. The three pillars form the complete operating stack.</p>
         </div>
+
         <div class="card">
           <div class="number">2</div>
-          <h3>Bottleneck</h3>
-          <p>The Kernel removes irrelevant conditions until the constraint preventing advancement is isolated.</p>
+          <h3>Upload</h3>
+          <p>Open a fresh AI session and upload all three pillars into the active conversation.</p>
         </div>
+
         <div class="card">
           <div class="number">3</div>
-          <h3>Procedural Minimum</h3>
-          <p>The Kernel identifies the smallest verifiable condition capable of restoring movement.</p>
+          <h3>Activate</h3>
+          <p>Enter the activation command inside the AI session.</p>
+          <span class="activation-copy">Activate the Emergency Logic Kernel.</span>
         </div>
       </div>
     </section>
 
-    <section>
+    <section id="testing">
       <div class="section-title">
-        <div class="label">Why it is different</div>
-        <h2>It is built from emergency-management decision methods.</h2>
-        <p>The Kernel was developed from methods used to stabilize complex systems under uncertainty.</p>
+        <div class="label">Model Testing</div>
+        <h2>Cross-platform operation.</h2>
+        <p>Testing includes major AI systems. Activation behavior varies across platforms. Condition analysis remains consistent. Emergency logic remains unchanged.</p>
       </div>
 
-      <div class="comparison">
-        <div class="comparison-row">
-          <div class="comparison-cell">A normal AI may summarize the problem.</div>
-          <div class="comparison-cell"><strong>The Kernel finds what is preventing movement.</strong></div>
+      <div class="why-box">
+        <div class="signal-list">
+          <div>Claude</div>
+          <div>ChatGPT</div>
+          <div>Gemini</div>
+          <div>Grok</div>
         </div>
-        <div class="comparison-row">
-          <div class="comparison-cell">A normal AI may generate options.</div>
-          <div class="comparison-cell"><strong>The Kernel identifies the next required condition.</strong></div>
+      </div>
+    </section>
+
+    <section id="purpose">
+      <div class="section-title">
+        <div class="label">Purpose</div>
+        <h2>Condition analysis through emergency logic.</h2>
+      </div>
+
+      <div class="why-box">
+        <p>The Emergency Logic Kernel identifies system conditions associated with advancement.</p>
+
+        <div class="signal-list">
+          <div>Bottlenecks</div>
+          <div>Dependencies</div>
+          <div>Communication Paths</div>
+          <div>Custodianship</div>
+          <div>Verification</div>
+          <div>Pivot Points</div>
+          <div>Constraints</div>
+          <div>Procedural Minimums</div>
         </div>
-        <div class="comparison-row">
-          <div class="comparison-cell">A normal AI may follow the user's narrative.</div>
-          <div class="comparison-cell"><strong>The Kernel strips away narrative noise.</strong></div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="section-title">
+        <div class="label">Process</div>
+        <h2>Condition to advancement.</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="number">1</div>
+          <h3>Condition</h3>
+          <p>A condition enters the system for analysis.</p>
         </div>
-        <div class="comparison-row">
-          <div class="comparison-cell">A normal AI may answer, “What should I do?”</div>
-          <div class="comparison-cell"><strong>The Kernel asks, “What condition must be resolved first?”</strong></div>
+        <div class="card">
+          <div class="number">2</div>
+          <h3>Constraint</h3>
+          <p>Dependencies, communication paths, records, and authorities are mapped. The governing condition is identified.</p>
+        </div>
+        <div class="card">
+          <div class="number">3</div>
+          <h3>Procedural Minimum</h3>
+          <p>The procedural minimum associated with the governing condition is identified.</p>
         </div>
       </div>
     </section>
@@ -543,54 +544,55 @@
     <section id="examples">
       <div class="section-title">
         <div class="label">Applications</div>
-        <h2>Different fields. Same stalled-system logic.</h2>
+        <h2>Stalled-system analysis across fields.</h2>
       </div>
 
       <div class="grid-4">
         <div class="card">
-          <h3>Petitioners & Citizens</h3>
-          <p>Turns a general complaint into the precise procedural question needed to identify the unresolved condition.</p>
+          <h3>Petitioners</h3>
+          <p>General complaints convert into precise procedural questions tied to unresolved conditions.</p>
         </div>
         <div class="card">
-          <h3>Judges & Administrators</h3>
-          <p>Cuts through competing narratives and identifies the evidentiary, custodial, or jurisdictional condition requiring examination first.</p>
+          <h3>Judges</h3>
+          <p>Competing records receive condition analysis, custodial mapping, and first-condition identification.</p>
         </div>
         <div class="card">
           <h3>Patent Lawyers</h3>
-          <p>Searches a case file for the claim term, prior-art fact, dependency, or interpretation point the dispute actually turns on.</p>
+          <p>Case files receive claim-term review, prior-art dependency review, and pivot-point identification.</p>
         </div>
         <div class="card">
-          <h3>Journalists & Investigators</h3>
-          <p>Separates allegations from verifiable conditions and identifies the first independently confirmable discrepancy.</p>
+          <h3>Journalists</h3>
+          <p>Tips and allegations receive verification review and first-discrepancy identification.</p>
         </div>
         <div class="card">
-          <h3>Executives & Managers</h3>
-          <p>Reveals whether the real operational constraint is information, authority, process, staffing, capacity, or timing.</p>
+          <h3>Executives</h3>
+          <p>Operational problems receive constraint analysis across information, authority, process, staffing, capacity, and timing.</p>
         </div>
         <div class="card">
-          <h3>Hospitals & Agencies</h3>
-          <p>Maps the stalled process until the uncommunicating office, metric, record, or transfer point is isolated.</p>
+          <h3>Hospitals</h3>
+          <p>Patient-flow, transfer, staffing, and capacity records receive bottleneck analysis.</p>
         </div>
         <div class="card">
           <h3>Congressional Offices</h3>
-          <p>Filters broad complaints into narrow inquiries that identify who received notice, who has authority, and what remains unresolved.</p>
+          <p>Constituent complaints convert into narrow inquiries tied to notice, authority, records, and unresolved conditions.</p>
         </div>
         <div class="card">
-          <h3>Technical Disputes</h3>
-          <p>Finds hidden dependencies, false root causes, wrong metrics, and decision-space defects buried inside complex records.</p>
+          <h3>Technical Systems</h3>
+          <p>Complex records receive dependency tracing, metric review, root-cause review, and decision-space analysis.</p>
         </div>
       </div>
     </section>
 
     <div class="bar">
-      Noise <span>→</span> Bottleneck <span>→</span> Procedural Minimum <span>→</span> Advancement
+      Condition <span>→</span> Constraint <span>→</span> Procedural Minimum <span>→</span> Advancement
     </div>
   </main>
 
   <footer>
-    <div>Emergency Logic Kernel — bottleneck detection for stalled systems.</div>
+    <div>Emergency Logic Kernel — bottleneck detection through emergency logic.</div>
     <nav>
       <a href="#downloads">Three Pillars</a>
+      <a href="#activation">Activation</a>
       <a href="#examples">Applications</a>
       <a href="#">Live Tests</a>
       <a href="#">Origin Record</a>
