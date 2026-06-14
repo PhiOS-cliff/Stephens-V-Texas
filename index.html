@@ -1,286 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procedural Kernel OS</title>
-    <style>
-        :root {
-            --bg: #0a0c14;
-            --card: #111827;
-            --accent: #3b82f6;
-            --silver: #9ca3af;
-            --silver-dark: #6b7280;
-            --text: #e2e8f0;
-            --muted: #94a3b8;
-        }
-        body { 
-            font-family: 'Inter', system-ui, sans-serif; 
-            margin: 0; 
-            padding: 60px 20px; 
-            background: var(--bg); 
-            color: var(--text); 
-            line-height: 1.6; 
-        }
-        .paper { max-width: 1000px; margin: 0 auto; }
-       
-        .header { 
-            text-align: center; 
-            margin-bottom: 60px; 
-        }
-        .header h1 { 
-            color: var(--accent); 
-            font-size: 3.2rem; 
-            margin: 0 0 12px; 
-            letter-spacing: -2px; 
-        }
-        .subtitle { 
-            font-size: 1.35rem; 
-            color: var(--text); 
-            max-width: 720px; 
-            margin: 0 auto 30px; 
-            font-weight: 400;
-        }
-       
-        .methodology {
-            font-size: 1rem; 
-            color: var(--muted); 
-            max-width: 780px; 
-            margin: 0 auto 40px;
-            padding: 25px; 
-            border-top: 1px solid var(--silver-dark); 
-            border-bottom: 1px solid var(--silver-dark);
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Kernel | Emergency-Management Reasoning for Stalled Systems</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: #0d1b2e;
+      --panel-soft: #10243c;
+      --line: #24415f;
+      --text: #e8f1fb;
+      --muted: #a9bbcc;
+      --dim: #7e93a8;
+      --blue: #2f80ed;
+      --blue-soft: rgba(47, 128, 237, 0.14);
+      --white: #ffffff;
+    }
 
-        .demo-box {
-            background: #0f172a;
-            border: 2px dashed var(--accent);
-            padding: 32px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px 0;
-        }
+    * { box-sizing: border-box; }
 
-        .core-section { margin-bottom: 60px; }
-        .core-label { 
-            text-align: center; 
-            color: var(--silver); 
-            text-transform: uppercase; 
-            letter-spacing: 0.25em; 
-            font-size: 0.8rem; 
-            margin-bottom: 25px; 
-        }
-       
-        .flow-container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 24px; 
-            margin-bottom: 50px; 
-        }
-        .box { 
-            background: var(--card); 
-            border: 1px solid var(--silver-dark); 
-            border-radius: 12px; 
-            padding: 28px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center;
-        }
-       
-        .box h2 { 
-            font-size: 1.25rem; 
-            color: var(--text); 
-            margin: 0 0 18px; 
-            letter-spacing: 0.05em; 
-            font-weight: 600; 
-        }
-        .btn {
-            display: inline-block; 
-            background: transparent; 
-            border: 1px solid var(--silver-dark); 
-            color: var(--silver);
-            padding: 12px 24px; 
-            text-align: center; 
-            border-radius: 6px; 
-            text-decoration: none; 
-            font-weight: 500; 
-            font-size: 0.85rem; 
-            transition: all 0.2s;
-            margin-top: auto;
-        }
-        .btn:hover { 
-            border-color: var(--accent); 
-            color: var(--accent); 
-        }
-       
-        .apps-section { margin-bottom: 60px; }
-        .apps-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; 
-        }
-        .app-card { 
-            background: #0f172a; 
-            border: 1px solid #334155; 
-            padding: 25px; 
-            border-radius: 12px; 
-        }
-        .app-card h3 { 
-            color: var(--accent); 
-            font-size: 1rem; 
-            margin-top: 0; 
-            text-transform: uppercase; 
-            letter-spacing: 0.05em; 
-        }
-        .app-card p { 
-            font-size: 0.9rem; 
-            color: var(--muted); 
-            margin: 12px 0 0; 
-        }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47, 128, 237, 0.18), transparent 34rem),
+        linear-gradient(180deg, #07111f 0%, #081522 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        .why-section {
-            background: var(--card);
-            border: 1px solid var(--silver-dark);
-            padding: 32px;
-            border-radius: 12px;
-            margin: 40px 0;
-        }
+    a { color: inherit; }
 
-        .outcome-bar {
-            border-top: 1px solid var(--silver-dark); 
-            border-bottom: 1px solid var(--silver-dark);
-            padding: 32px 0; 
-            margin: 30px 0 40px; 
-            text-align: center; 
-            letter-spacing: 0.2em; 
-            font-size: 1.1rem; 
-            color: var(--text);
-        }
-        .outcome-bar span { 
-            color: var(--accent); 
-            margin: 0 18px; 
-            font-weight: bold; 
-        }
-       
-        .how-to-section { 
-            text-align: center; 
-            color: var(--text); 
-            max-width: 780px; 
-            margin: 0 auto 50px; 
-        }
-        .how-to-section h3 { 
-            color: var(--silver); 
-            margin-bottom: 24px; 
-        }
-       
-        .footer { 
-            text-align: center; 
-            color: var(--silver); 
-            padding-top: 30px; 
-            border-top: 1px solid var(--silver-dark); 
-        }
-        .footer a { 
-            color: var(--text); 
-            margin: 0 12px; 
-            text-decoration: none; 
-            font-size: 0.9rem; 
-        }
-    </style>
+    .page {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--blue);
+      border: 1px solid var(--line);
+      background: var(--blue-soft);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0 auto 20px;
+      max-width: 850px;
+      font-size: clamp(2.6rem, 7vw, 5.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.07em;
+      color: var(--white);
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 0 auto 28px;
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      color: var(--muted);
+    }
+
+    .lead strong { color: var(--text); font-weight: 650; }
+
+    .hero-rule {
+      max-width: 720px;
+      margin: 34px auto 0;
+      padding: 24px 28px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .hero-rule span { color: var(--blue); font-weight: 700; }
+
+    .input-card {
+      margin: 18px auto 58px;
+      max-width: 860px;
+      background: rgba(13, 27, 46, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .input-card h2 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      color: var(--white);
+    }
+
+    .input-card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 145px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #071323;
+      color: var(--text);
+      padding: 16px;
+      font: inherit;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(47, 128, 237, 0.14);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid var(--blue);
+      background: var(--blue);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .note {
+      color: var(--dim);
+      font-size: 0.92rem;
+    }
+
+    section { padding: 36px 0; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .section-title .label {
+      color: var(--blue);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .section-title h2 {
+      margin: 8px auto 0;
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      max-width: 740px;
+      color: var(--white);
+    }
+
+    .grid-3, .grid-4, .grid-2 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .card {
+      background: rgba(13, 27, 46, 0.82);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--white);
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .number {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .comparison {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .comparison-row:last-child { border-bottom: 0; }
+
+    .comparison-cell {
+      padding: 20px 24px;
+      color: var(--muted);
+    }
+
+    .comparison-cell:first-child {
+      border-right: 1px solid var(--line);
+      color: var(--dim);
+    }
+
+    .comparison-cell strong { color: var(--white); }
+
+    .bar {
+      margin: 32px 0 10px;
+      padding: 26px 18px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      color: var(--text);
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      font-size: 0.92rem;
+    }
+
+    .bar span {
+      color: var(--blue);
+      margin: 0 10px;
+      font-weight: 800;
+    }
+
+    .origin {
+      background: linear-gradient(180deg, rgba(16, 36, 60, 0.86), rgba(13, 27, 46, 0.88));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .origin p { color: var(--muted); margin: 0 0 16px; }
+    .origin p:last-child { margin-bottom: 0; }
+    .origin strong { color: var(--text); }
+
+    footer {
+      padding: 44px 0 60px;
+      text-align: center;
+      color: var(--dim);
+      font-size: 0.92rem;
+    }
+
+    footer nav {
+      margin-top: 14px;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover { color: var(--blue); }
+
+    @media (max-width: 860px) {
+      .grid-3, .grid-4, .grid-2, .comparison-row { grid-template-columns: 1fr; }
+      .comparison-cell:first-child { border-right: 0; border-bottom: 1px solid var(--line); }
+      header { padding-top: 48px; }
+      .bar { letter-spacing: 0.04em; }
+    }
+  </style>
 </head>
 <body>
-<div class="paper">
-    <div class="header">
-        <h1>PROCEDURAL KERNEL OS</h1>
-        <p class="subtitle">An operating system for AI reasoning. Built from emergency-management logic.</p>
-        <p class="methodology">
-            Most AI systems answer questions. The Kernel identifies constraints.<br>
-            Input a stalled condition. The Kernel isolates the unresolved node and returns the procedural minimum required to restore movement.
-        </p>
+  <main class="page">
+    <header>
+      <div class="eyebrow">The Kernel</div>
+      <h1>Find the bottleneck.</h1>
+      <p class="lead">
+        The Kernel applies <strong>emergency-management reasoning</strong> to stalled systems. Describe the condition. It filters the noise, isolates the pivot point, and returns the smallest verifiable step required to restore movement.
+      </p>
+      <div class="hero-rule">
+        Most AI systems answer questions. <span>The Kernel identifies constraints.</span>
+      </div>
+    </header>
+
+    <div class="input-card" id="test">
+      <h2>Put the condition into the Kernel.</h2>
+      <p>Use a permit delay, court dispute, investigation, operational failure, patent issue, agency problem, hospital backlog, corporate bottleneck, or any stalled system.</p>
+      <textarea placeholder="Example: My permit application has been under review for eighteen months. The agency keeps requesting information but never approves, denies, or identifies the missing requirement."></textarea>
+      <div class="actions">
+        <a href="#" class="button">Run Kernel Analysis</a>
+        <a href="#examples" class="button secondary">View examples</a>
+        <span class="note">Output: condition, classification, procedural minimum, next action.</span>
+      </div>
     </div>
 
-    <div class="demo-box">
-        <h2 style="color: var(--accent); margin-top: 0;">Input a Stalled Condition</h2>
-        <p style="color: var(--muted); max-width: 620px; margin: 0 auto 20px;">
-            Describe any complex problem (permit delay, institutional failure, operational bottleneck, investigation, dispute, etc.)
-        </p>
-        <textarea style="width: 100%; max-width: 620px; height: 120px; background: #1e2937; border: 1px solid var(--silver-dark); color: var(--text); padding: 12px; border-radius: 8px; resize: vertical;" placeholder="Example: Engineering report documents imminent structural hazard. Civil emergency declaration filed with no intake acknowledgment or mitigation after months..."></textarea>
-        <br><br>
-        <a href="#" class="btn" style="background: var(--accent); color: white; border: none;">Run Kernel Analysis</a>
-    </div>
+    <section>
+      <div class="section-title">
+        <div class="label">How it works</div>
+        <h2>It finds the procedural needle in the haystack.</h2>
+      </div>
 
-    <div class="core-section">
-        <div class="core-label">Kernel Execution Cycle</div>
-        <div class="flow-container">
-            <div class="box">
-                <h2>1. CONDITION</h2>
-                <p style="color: var(--muted);">Define the stalled system state.</p>
-            </div>
-            <div class="box">
-                <h2>2. NODE ISOLATION</h2>
-                <p style="color: var(--muted);">Map dependencies, custodianship, and unresolved nodes.</p>
-            </div>
-            <div class="box">
-                <h2>3. PROCEDURAL MINIMUM</h2>
-                <p style="color: var(--muted);">Return the smallest verifiable action to advance.</p>
-            </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="number">1</div>
+          <h3>Condition</h3>
+          <p>The user describes the stalled state without needing to know the correct legal, technical, or institutional category.</p>
         </div>
-    </div>
-
-    <div class="why-section">
-        <h2 style="text-align: center; color: var(--accent);">Why the Kernel is Different</h2>
-        <ul style="color: var(--muted); max-width: 700px; margin: 20px auto; padding-left: 20px;">
-            <li>The Kernel is not a chatbot or consultant. It is an operating layer that imposes emergency-management reasoning on any AI model.</li>
-            <li>It does not generate opinions or summaries. It traces dependency chains until it finds the silent node preventing advancement.</li>
-            <li>Most tools answer "What should I do?" The Kernel answers "What condition must be resolved first?"</li>
-        </ul>
-    </div>
-
-    <div class="apps-section">
-        <div class="core-label">Operational Impact</div>
-        <div class="apps-grid">
-            <div class="app-card">
-                <h3>Petitioners &amp; Citizens</h3>
-                <p>Converts vague frustration into the precise procedural question that forces acknowledgment or record creation.</p>
-            </div>
-            <div class="app-card">
-                <h3>Judges &amp; Administrators</h3>
-                <p>Cuts through narratives to surface evidentiary imbalances and custodianship failures.</p>
-            </div>
-            <div class="app-card">
-                <h3>Journalists &amp; Investigators</h3>
-                <p>Isolates the first verifiable discrepancy before narrative forms.</p>
-            </div>
-            <div class="app-card">
-                <h3>Executives &amp; Managers</h3>
-                <p>Reveals whether the real constraint is information, authority, or process in complex operations.</p>
-            </div>
+        <div class="card">
+          <div class="number">2</div>
+          <h3>Isolation</h3>
+          <p>The Kernel maps dependencies, filters irrelevant noise, and identifies the decision point or silent node preventing advancement.</p>
         </div>
+        <div class="card">
+          <div class="number">3</div>
+          <h3>Procedural Minimum</h3>
+          <p>The system returns the smallest verifiable action required to move the condition forward.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <div class="label">Why it is different</div>
+        <h2>It is built from emergency-management logic.</h2>
+      </div>
+
+      <div class="comparison">
+        <div class="comparison-row">
+          <div class="comparison-cell">A normal AI may summarize the problem.</div>
+          <div class="comparison-cell"><strong>The Kernel finds what is preventing movement.</strong></div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">A normal AI may generate options.</div>
+          <div class="comparison-cell"><strong>The Kernel identifies the next required condition.</strong></div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">A normal AI may follow the user's narrative.</div>
+          <div class="comparison-cell"><strong>The Kernel strips away narrative noise.</strong></div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-cell">A normal AI may answer, “What should I do?”</div>
+          <div class="comparison-cell"><strong>The Kernel asks, “What condition must be resolved first?”</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="examples">
+      <div class="section-title">
+        <div class="label">Use cases</div>
+        <h2>Different fields. Same stalled-system logic.</h2>
+      </div>
+
+      <div class="grid-4">
+        <div class="card">
+          <h3>Petitioners & Citizens</h3>
+          <p>Turns a general complaint into the precise procedural question needed to force acknowledgment, record creation, or final action.</p>
+        </div>
+        <div class="card">
+          <h3>Judges & Administrators</h3>
+          <p>Cuts through competing narratives and identifies the evidentiary, custodial, or jurisdictional condition requiring examination first.</p>
+        </div>
+        <div class="card">
+          <h3>Patent Lawyers</h3>
+          <p>Searches a case file for the claim term, prior-art fact, dependency, or interpretation point the dispute actually turns on.</p>
+        </div>
+        <div class="card">
+          <h3>Journalists & Investigators</h3>
+          <p>Separates allegations from verifiable conditions and identifies the first independently confirmable discrepancy.</p>
+        </div>
+        <div class="card">
+          <h3>Executives & Managers</h3>
+          <p>Reveals whether the real operational constraint is information, authority, process, staffing, capacity, or timing.</p>
+        </div>
+        <div class="card">
+          <h3>Hospitals & Agencies</h3>
+          <p>Maps the stalled process until the uncommunicating office, metric, record, or transfer point is isolated.</p>
+        </div>
+        <div class="card">
+          <h3>Congressional Offices</h3>
+          <p>Filters broad complaints into narrow inquiries that identify who received notice, who has authority, and what remains unresolved.</p>
+        </div>
+        <div class="card">
+          <h3>Technical Disputes</h3>
+          <p>Finds hidden dependencies, false root causes, wrong metrics, and decision-space defects buried inside complex records.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="bar">
+      Condition <span>→</span> Bottleneck <span>→</span> Procedural Minimum <span>→</span> Advancement
     </div>
 
-    <div class="outcome-bar">
-        CONDITION <span>→</span> NODE ISOLATION <span>→</span> PROCEDURAL MINIMUM <span>→</span> SYSTEM ADVANCEMENT
-    </div>
+    <section>
+      <div class="section-title">
+        <div class="label">Architecture</div>
+        <h2>Three pillars support the Kernel.</h2>
+      </div>
 
-    <div class="how-to-section">
-        <h3>The Three Pillars</h3>
-        <p><strong>Pillar I — Laboratory:</strong> Stephens v. Texas (real-world institutional stress test).<br>
-           <strong>Pillar II — Logic Layer:</strong> Formalized emergency-management reasoning.<br>
-           <strong>Pillar III — Kernel OS:</strong> Portable operating system that runs consistently across models.</p>
-        
-        <p style="margin-top: 30px; font-size: 0.95rem; color: var(--muted);">
-            The case was the forge. The Kernel is the system.
-        </p>
-    </div>
+      <div class="origin">
+        <p><strong>Pillar I — Laboratory.</strong> Stephens v. Texas produced a real-world institutional stress test, moving the same emergency condition through county, state, and appellate channels.</p>
+        <p><strong>Pillar II — Logic Layer.</strong> Emergency-management reasoning was formalized for machine use: condition recognition, communication paths, custodianship, verification, dependency chains, and procedural minimums.</p>
+        <p><strong>Pillar III — Kernel.</strong> The logic was converted into a portable operating layer that can be applied across major AI systems to produce consistent bottleneck-detection behavior.</p>
+        <p><strong>The case was the laboratory. The Kernel is the system.</strong></p>
+      </div>
+    </section>
+  </main>
 
-    <div class="footer">
-        <p>Procedural Kernel OS — Node Isolation &amp; Advancement Engine</p>
-        <a href="#">Core Documents</a> | 
-        <a href="#">Live Tests</a> | 
-        <a href="#">Kernel Prompts</a> | 
-        <a href="#">Origin Record</a>
-    </div>
-</div>
+  <footer>
+    <div>The Kernel — Emergency-management reasoning for stalled systems.</div>
+    <nav>
+      <a href="#">Core Documents</a>
+      <a href="#">Live Tests</a>
+      <a href="#">Kernel Instructions</a>
+      <a href="#">Origin Record</a>
+    </nav>
+  </footer>
 </body>
 </html>
