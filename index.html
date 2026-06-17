@@ -4,463 +4,490 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version 11.2 — One AI. Five Ways to Think.</title>
+  <title>Version 11.2 — Cognitive State Control</title>
 
   <style>
     :root {
-      --bg: #FAFAF8;
-      --surface: #FFFFFF;
-      --text: #1D232A;
-      --muted: #6E7681;
-      --line: #E3E7EA;
+      --bg: #0F141A;
+      --panel: #151C24;
+      --panel-dark: #101820;
+      --panel-light: #1A232D;
+      --line: #2A3440;
+      --text: #E8EEF2;
+      --muted: #8FA1B2;
+      --faint: #5C6B78;
 
-      --blue: #214E7A;
-      --teal: #2C7A7B;
-      --purple: #6B5FB5;
-      --amber: #A86A00;
-      --slate: #66717D;
+      --source: #748394;
+      --eli: #3D7EA6;
+      --ele: #36A3A1;
+      --wild: #7A6FD6;
+      --uno: #C58A21;
 
-      --radius: 26px;
-      --shadow: 0 22px 70px rgba(20, 38, 54, 0.08);
+      --danger: #C58A21;
+      --ok: #36A3A1;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       background:
-        radial-gradient(circle at 70% 10%, rgba(33, 78, 122, 0.10), transparent 32%),
-        radial-gradient(circle at 5% 40%, rgba(44, 122, 123, 0.08), transparent 28%),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
         var(--bg);
+      background-size: 42px 42px;
       color: var(--text);
-      font-family: Inter, "IBM Plex Sans", "Source Sans 3", Arial, sans-serif;
-      line-height: 1.5;
+      font-family: Inter, "IBM Plex Sans", Arial, sans-serif;
+      line-height: 1.45;
     }
 
     a {
       color: inherit;
+      text-decoration: none;
+    }
+
+    .mono {
+      font-family: "IBM Plex Mono", "JetBrains Mono", Consolas, monospace;
+      letter-spacing: 0.02em;
     }
 
     header {
-      width: 100%;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(250, 250, 248, 0.82);
-      backdrop-filter: blur(18px);
+      z-index: 50;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 16px 5vw;
+      background: rgba(15, 20, 26, 0.88);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      color: var(--blue);
+      color: var(--text);
     }
 
-    .mark {
-      width: 34px;
-      height: 34px;
+    .status-dot {
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
-      border: 2px solid var(--blue);
-      position: relative;
-    }
-
-    .mark::after {
-      content: "";
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--teal);
-      position: absolute;
-      top: 9px;
-      left: 9px;
+      background: var(--ok);
+      box-shadow: 0 0 16px rgba(54, 163, 161, 0.9);
     }
 
     nav {
       display: flex;
-      gap: 24px;
+      gap: 26px;
+      font-size: 0.78rem;
       color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    nav a {
-      text-decoration: none;
+      text-transform: uppercase;
     }
 
     nav a:hover {
-      color: var(--blue);
+      color: var(--text);
+    }
+
+    main {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 0 5vw;
     }
 
     .hero {
-      padding: 96px 7% 70px;
-      max-width: 1320px;
-      margin: auto;
+      min-height: 86vh;
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 54px;
+      gap: 34px;
       align-items: center;
+      padding: 68px 0;
     }
 
-    .eyebrow {
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
+    .label {
+      color: var(--muted);
+      font-size: 0.76rem;
       text-transform: uppercase;
-      font-weight: 800;
-      color: var(--blue);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     h1 {
-      font-size: clamp(3.3rem, 7vw, 7.4rem);
-      line-height: 0.9;
+      margin: 0;
+      max-width: 920px;
+      font-size: clamp(3.2rem, 7vw, 7.8rem);
+      line-height: 0.88;
       letter-spacing: -0.075em;
-      margin: 0 0 28px;
+      font-weight: 850;
     }
 
     .lead {
+      max-width: 760px;
+      margin: 28px 0 30px;
       color: var(--muted);
-      font-size: clamp(1.15rem, 1.7vw, 1.45rem);
-      max-width: 740px;
-      margin-bottom: 34px;
+      font-size: clamp(1.08rem, 1.5vw, 1.35rem);
     }
 
-    .cta {
+    .hero-actions {
       display: flex;
-      gap: 14px;
       flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 22px;
-      border-radius: 999px;
+    .btn {
+      border: 1px solid var(--line);
+      padding: 13px 18px;
+      color: var(--text);
+      background: var(--panel);
       font-weight: 800;
-      text-decoration: none;
-      border: 1px solid var(--line);
-      background: white;
+      text-transform: uppercase;
+      font-size: 0.78rem;
     }
 
-    .button.primary {
-      background: var(--blue);
+    .btn.primary {
+      background: var(--eli);
+      border-color: var(--eli);
       color: white;
-      border-color: var(--blue);
     }
 
-    .button.secondary {
-      color: var(--blue);
+    .btn:hover {
+      border-color: var(--text);
     }
 
-    .os-card {
-      background: rgba(255, 255, 255, 0.82);
+    .status-board {
       border: 1px solid var(--line);
-      border-radius: 34px;
-      box-shadow: var(--shadow);
-      padding: 28px;
+      background: rgba(16, 24, 32, 0.92);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+    }
+
+    .board-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
+    .board-body {
+      padding: 18px;
+    }
+
+    .system-row {
+      display: grid;
+      grid-template-columns: 170px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    .system-row:last-child {
+      border-bottom: 0;
+    }
+
+    .system-key {
+      color: var(--faint);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    .system-value {
+      color: var(--text);
+      font-weight: 750;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      padding: 5px 8px;
+      color: var(--muted);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+    }
+
+    .pill.ok {
+      color: var(--ok);
+      border-color: rgba(54, 163, 161, 0.45);
     }
 
     .terminal {
-      background: #17212B;
-      color: #EEF4F7;
-      border-radius: 24px;
-      padding: 24px;
-      font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
-      min-height: 360px;
-    }
-
-    .terminal-line {
-      color: #9FB2C2;
-      margin-bottom: 18px;
-      font-size: 0.95rem;
-    }
-
-    .terminal h2 {
-      font-size: 1.55rem;
-      margin: 0 0 18px;
-      color: white;
+      margin-top: 18px;
+      padding: 18px;
+      background: #080D12;
+      border: 1px solid var(--line);
+      min-height: 230px;
+      font-size: 0.88rem;
+      color: var(--muted);
     }
 
     .terminal .prompt {
-      color: #93D6D6;
+      color: var(--ele);
     }
 
-    .terminal .output {
-      color: #DCE7EE;
-      margin: 14px 0;
+    .terminal .white {
+      color: var(--text);
     }
 
-    .gear-strip {
+    .terminal .amber {
+      color: var(--uno);
+    }
+
+    .mode-strip {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-top: 16px;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 18px;
     }
 
-    .gear {
-      padding: 12px 8px;
-      border-radius: 14px;
+    .mode-tab {
+      background: var(--panel-dark);
+      padding: 16px 10px;
       text-align: center;
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: white;
-    }
-
-    .source { background: var(--slate); }
-    .eli { background: var(--blue); }
-    .ele { background: var(--teal); }
-    .wild { background: var(--purple); }
-    .uno { background: var(--amber); }
-
-    section {
-      padding: 78px 7%;
-      max-width: 1320px;
-      margin: auto;
-    }
-
-    .section-kicker {
-      color: var(--blue);
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-weight: 850;
       font-size: 0.76rem;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(2.1rem, 4.5vw, 4.4rem);
-      letter-spacing: -0.055em;
-      line-height: 0.98;
-      margin: 0 0 20px;
-      max-width: 900px;
-    }
-
-    .section-copy {
-      color: var(--muted);
-      font-size: 1.15rem;
-      max-width: 770px;
-      margin-bottom: 38px;
-    }
-
-    .problem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-    }
-
-    .problem-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: 0 16px 42px rgba(20, 38, 54, 0.04);
-    }
-
-    .problem-card h3 {
-      margin-top: 0;
-      font-size: 1.45rem;
-    }
-
-    .problem-card p {
-      color: var(--muted);
-      margin-bottom: 0;
-    }
-
-    .modes {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-    }
-
-    .mode {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      min-height: 245px;
+      text-transform: uppercase;
       position: relative;
-      overflow: hidden;
     }
 
-    .mode::before {
+    .mode-tab::before {
       content: "";
       position: absolute;
       inset: 0 0 auto 0;
-      height: 7px;
+      height: 3px;
       background: var(--accent);
+      opacity: 0.85;
     }
 
-    .mode small {
-      display: block;
-      color: var(--muted);
-      font-weight: 800;
-      letter-spacing: 0.08em;
+    .mode-tab:hover {
+      background: var(--panel-light);
+      color: white;
+    }
+
+    .source { --accent: var(--source); }
+    .eli { --accent: var(--eli); }
+    .ele { --accent: var(--ele); }
+    .wild { --accent: var(--wild); }
+    .uno { --accent: var(--uno); }
+
+    section {
+      padding: 72px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 34px;
+      margin-bottom: 34px;
+    }
+
+    .section-code {
+      color: var(--faint);
+      font-size: 0.76rem;
       text-transform: uppercase;
-      margin-bottom: 32px;
     }
 
-    .mode h3 {
-      font-size: 1.55rem;
-      margin: 0 0 10px;
-    }
-
-    .mode p {
-      color: var(--muted);
+    h2 {
       margin: 0;
+      max-width: 980px;
+      font-size: clamp(2.1rem, 4.4vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
     }
 
-    .mode-source { --accent: var(--slate); }
-    .mode-eli { --accent: var(--blue); }
-    .mode-ele { --accent: var(--teal); }
-    .mode-wild { --accent: var(--purple); }
-    .mode-uno { --accent: var(--amber); }
-
-    .demo-box {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      padding: 34px;
-      box-shadow: var(--shadow);
+    .section-copy {
+      margin-top: 20px;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1.08rem;
     }
 
-    .demo-grid {
+    .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .cell {
+      background: var(--panel-dark);
+      padding: 24px;
+      min-height: 210px;
+    }
+
+    .cell h3 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+    }
+
+    .cell p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cell .tag {
+      display: inline-block;
+      margin-bottom: 32px;
+      color: var(--accent);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 850;
+    }
+
+    .cell:hover {
+      background: var(--panel);
+    }
+
+    .demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
     }
 
     .demo-panel {
-      border-radius: 24px;
+      background: var(--panel-dark);
       padding: 26px;
-      border: 1px solid var(--line);
-      background: #FAFAF8;
     }
 
     .demo-panel h3 {
-      margin-top: 0;
+      margin: 0 0 16px;
+      color: var(--text);
     }
 
     .demo-panel ul {
+      margin: 18px 0 0;
+      padding-left: 18px;
       color: var(--muted);
-      padding-left: 20px;
     }
 
-    .applications {
+    .demo-panel li {
+      margin: 8px 0;
+    }
+
+    .apps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
     }
 
     .app {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 22px;
+      background: var(--panel-dark);
       padding: 22px;
-      min-height: 120px;
+      min-height: 150px;
     }
 
     .app strong {
       display: block;
-      color: var(--blue);
-      font-size: 1.05rem;
-      margin-bottom: 8px;
+      color: var(--text);
+      margin-bottom: 10px;
+      font-size: 1rem;
     }
 
     .app span {
+      display: block;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
-    .final-cta {
-      background: var(--blue);
-      color: white;
-      border-radius: 38px;
-      padding: 56px;
+    .final {
+      margin: 72px 0;
+      padding: 36px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(61,126,166,0.18), transparent),
+        var(--panel-dark);
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 32px;
+      gap: 28px;
       align-items: center;
     }
 
-    .final-cta h2 {
-      font-size: clamp(2rem, 4vw, 4rem);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
-      margin: 0 0 14px;
+    .final h2 {
+      font-size: clamp(2rem, 4vw, 4.2rem);
     }
 
-    .final-cta p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.78);
-      max-width: 680px;
-      font-size: 1.1rem;
-    }
-
-    .final-cta .button {
-      background: white;
-      color: var(--blue);
-      border-color: white;
-      white-space: nowrap;
+    .final p {
+      margin: 18px 0 0;
+      color: var(--muted);
     }
 
     footer {
-      padding: 42px 7%;
       border-top: 1px solid var(--line);
-      color: var(--muted);
+      padding: 24px 5vw;
+      color: var(--faint);
       display: flex;
       justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
+      font-size: 0.78rem;
+      text-transform: uppercase;
     }
 
-    @media (max-width: 1050px) {
+    @media (max-width: 1100px) {
       .hero,
-      .problem-grid,
-      .demo-grid,
-      .final-cta {
+      .section-head,
+      .grid-2,
+      .demo,
+      .final {
         grid-template-columns: 1fr;
       }
 
-      .modes,
-      .applications {
+      .grid-5,
+      .apps {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .gear-strip {
+      .system-row {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 680px) {
       header {
-        align-items: flex-start;
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
 
       nav {
         flex-wrap: wrap;
+        gap: 14px;
       }
 
-      .modes,
-      .applications {
+      .mode-strip,
+      .grid-5,
+      .apps {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding-top: 64px;
-      }
-
-      .final-cta {
-        padding: 34px;
+      h1 {
+        font-size: 3.6rem;
       }
     }
   </style>
@@ -469,14 +496,14 @@
 <body>
 
   <header>
-    <div class="brand">
-      <div class="mark"></div>
+    <div class="brand mono">
+      <span class="status-dot"></span>
       VERSION 11.2
     </div>
 
-    <nav>
+    <nav class="mono">
       <a href="#problem">Problem</a>
-      <a href="#modes">Modes</a>
+      <a href="#states">States</a>
       <a href="#demo">Demo</a>
       <a href="#applications">Applications</a>
     </nav>
@@ -486,107 +513,147 @@
 
     <section class="hero">
       <div>
-        <div class="eyebrow">Human Cognitive Operating System</div>
-        <h1>One AI. Five ways to think.</h1>
+        <div class="label mono">[HCOS-11.2 / COGNITIVE GOVERNOR]</div>
+
+        <h1>Cognitive state control for high-load decision environments.</h1>
+
         <p class="lead">
-          Version 11.2 lets people deliberately shift cognitive states instead of forcing AI to
-          discover, organize, orient, imagine, and escalate all at once.
+          Version 11.2 separates AI behavior into controlled operating states so the Pilot can
+          choose the kind of thinking required now.
         </p>
 
-        <div class="cta">
-          <a class="button primary" href="#demo">See the Difference</a>
-          <a class="button secondary" href="#modes">Explore the Modes</a>
+        <div class="hero-actions mono">
+          <a class="btn primary" href="#states">View States</a>
+          <a class="btn" href="#demo">Run Example</a>
         </div>
       </div>
 
-      <div class="os-card">
-        <div class="terminal">
-          <div class="terminal-line">VERSION 11.2 / ACTIVE SESSION</div>
-          <h2>Choose the kind of thinking you need.</h2>
+      <aside class="status-board">
+        <div class="board-header mono">
+          <span>System Status Board</span>
+          <span>Session: Ready</span>
+        </div>
 
-          <div class="output"><span class="prompt">&gt;</span> SOURCE</div>
-          <div class="output">Talk freely.</div>
+        <div class="board-body mono">
+          <div class="system-row">
+            <div class="system-key">Architecture</div>
+            <div class="system-value">VERSION 11.2</div>
+            <div class="pill ok">LOCKED</div>
+          </div>
 
-          <div class="output"><span class="prompt">&gt;</span> ELI</div>
-          <div class="output">Work through the problem.</div>
+          <div class="system-row">
+            <div class="system-key">Pilot Authority</div>
+            <div class="system-value">PRESERVED</div>
+            <div class="pill ok">ACTIVE</div>
+          </div>
 
-          <div class="output"><span class="prompt">&gt;</span> ELE</div>
-          <div class="output">Restore orientation.</div>
+          <div class="system-row">
+            <div class="system-key">Operating State</div>
+            <div class="system-value">AWAITING DECLARATION</div>
+            <div class="pill">STANDBY</div>
+          </div>
 
-          <div class="gear-strip">
-            <div class="gear source">SOURCE</div>
-            <div class="gear eli">ELI</div>
-            <div class="gear ele">ELE</div>
-            <div class="gear wild">WILD</div>
-            <div class="gear uno">UNO</div>
+          <div class="system-row">
+            <div class="system-key">Boundary Control</div>
+            <div class="system-value">COGNITIVE DRIFT SUPPRESSED</div>
+            <div class="pill ok">READY</div>
+          </div>
+
+          <div class="terminal">
+            <div><span class="prompt">&gt;</span> LOAD VERSION 11.2</div>
+            <br />
+            <div class="white">BOOTLOADER: ACTIVE</div>
+            <div class="white">SOURCE: AVAILABLE</div>
+            <div class="white">ELI: AVAILABLE</div>
+            <div class="white">ELE: AVAILABLE</div>
+            <div class="amber">UNO: LOCKED UNTIL SUPPLIED EFFORT</div>
+            <br />
+            <div><span class="prompt">&gt;</span> PILOT DECLARATION REQUIRED</div>
+          </div>
+
+          <div class="mode-strip">
+            <div class="mode-tab source">Source</div>
+            <div class="mode-tab eli">ELI</div>
+            <div class="mode-tab ele">ELE</div>
+            <div class="mode-tab wild">Wild Card</div>
+            <div class="mode-tab uno">UNO</div>
           </div>
         </div>
-      </div>
+      </aside>
     </section>
 
     <section id="problem">
-      <div class="section-kicker">The Problem</div>
-      <h2 class="section-title">AI drifts because it tries to think in every direction at once.</h2>
-      <p class="section-copy">
-        General AI is powerful, but complex work often requires different kinds of thinking at
-        different moments. Discovery, collaboration, orientation, imagination, and escalation are
-        not the same operation.
-      </p>
+      <div class="section-head">
+        <div class="section-code mono">[PROBLEM / AI-DRIFT]</div>
+        <div>
+          <h2>General AI blends too many cognitive operations into one response.</h2>
+          <p class="section-copy">
+            Discovery, collaboration, orientation, imagination, and escalation are different
+            kinds of work. When they collapse into one stream, complex environments become noisy.
+          </p>
+        </div>
+      </div>
 
-      <div class="problem-grid">
-        <div class="problem-card">
-          <h3>Normal AI blends the work.</h3>
+      <div class="grid-2">
+        <div class="cell">
+          <span class="tag mono" style="--accent: var(--uno);">Uncontrolled State</span>
+          <h3>Normal AI tries to do everything at once.</h3>
           <p>
             It explains, brainstorms, diagnoses, predicts, summarizes, and recommends in the same
-            motion. That can be useful in simple conversations, but unstable in high-load environments.
+            motion. That can help in ordinary conversation and drift in high-load work.
           </p>
         </div>
 
-        <div class="problem-card">
-          <h3>Version 11.2 separates the work.</h3>
+        <div class="cell">
+          <span class="tag mono" style="--accent: var(--ele);">Controlled State</span>
+          <h3>Version 11.2 separates the operations.</h3>
           <p>
-            The operator chooses the cognitive state. The system stops trying to be everything at
-            once and performs the kind of thinking needed now.
+            The operator chooses the cognitive state. The system performs the kind of thinking
+            required now, then stops where expertise begins.
           </p>
         </div>
       </div>
     </section>
 
-    <section id="modes">
-      <div class="section-kicker">The System</div>
-      <h2 class="section-title">A manual transmission for cognition.</h2>
-      <p class="section-copy">
-        The Pilot remains in command. The system does not replace expertise. It stabilizes the
-        relationship between human judgment and machine intelligence.
-      </p>
+    <section id="states">
+      <div class="section-head">
+        <div class="section-code mono">[ARCH-11.2 / STATE TABLE]</div>
+        <div>
+          <h2>One AI. Five controlled ways to think.</h2>
+          <p class="section-copy">
+            The Pilot remains in command. The operating states specialize behavior without
+            replacing professional judgment.
+          </p>
+        </div>
+      </div>
 
-      <div class="modes">
-        <div class="mode mode-source">
-          <small>Unrestricted</small>
+      <div class="grid-5">
+        <div class="cell">
+          <span class="tag mono" style="--accent: var(--source);">Unrestricted</span>
           <h3>SOURCE</h3>
-          <p>Talk freely. Explore, explain, create, and discover without operating constraints.</p>
+          <p>Talk freely. Explore, create, discover, explain, and associate without operating constraints.</p>
         </div>
 
-        <div class="mode mode-eli">
-          <small>Workspace</small>
+        <div class="cell">
+          <span class="tag mono" style="--accent: var(--eli);">Workspace</span>
           <h3>ELI</h3>
           <p>Work through a problem with a procedural teammate that organizes the effort.</p>
         </div>
 
-        <div class="mode mode-ele">
-          <small>Orientation</small>
+        <div class="cell">
+          <span class="tag mono" style="--accent: var(--ele);">Orientation</span>
           <h3>ELE</h3>
-          <p>Restore orientation by identifying what deserves attention now.</p>
+          <p>Restore orientation and identify what deserves attention now.</p>
         </div>
 
-        <div class="mode mode-wild">
-          <small>Expansion</small>
+        <div class="cell">
+          <span class="tag mono" style="--accent: var(--wild);">Expansion</span>
           <h3>WILD CARD</h3>
           <p>Expand possibility, challenge assumptions, and generate alternative frames.</p>
         </div>
 
-        <div class="mode mode-uno">
-          <small>Compression</small>
+        <div class="cell">
+          <span class="tag mono" style="--accent: var(--uno);">Compression</span>
           <h3>UNO</h3>
           <p>Compress possibility into action when time and consequence matter.</p>
         </div>
@@ -594,110 +661,114 @@
     </section>
 
     <section id="demo">
-      <div class="section-kicker">The Difference</div>
-      <h2 class="section-title">Same problem. Different cognitive state.</h2>
-      <p class="section-copy">
-        The value is not that the AI is louder. The value is that the AI knows what kind of work
-        it is supposed to perform.
-      </p>
+      <div class="section-head">
+        <div class="section-code mono">[DEMO / SAME INPUT]</div>
+        <div>
+          <h2>Same problem. Different operating state.</h2>
+          <p class="section-copy">
+            The value is not louder intelligence. The value is controlled behavior.
+          </p>
+        </div>
+      </div>
 
-      <div class="demo-box">
-        <div class="demo-grid">
-          <div class="demo-panel">
-            <h3>Without Version 11.2</h3>
-            <p><strong>User:</strong> “My team has conflicting reports and the system is stalled.”</p>
-            <ul>
-              <li>Generates possible causes</li>
-              <li>Suggests broad solutions</li>
-              <li>Adds background explanation</li>
-              <li>Invents missing possibilities</li>
-              <li>May drift away from the governing condition</li>
-            </ul>
-          </div>
+      <div class="demo">
+        <div class="demo-panel">
+          <h3>Without State Control</h3>
+          <p class="mono">INPUT: “My team has conflicting reports and the system is stalled.”</p>
+          <ul>
+            <li>Generates possible causes</li>
+            <li>Suggests broad solutions</li>
+            <li>Adds background explanation</li>
+            <li>Invents missing possibilities</li>
+            <li>May drift away from the governing condition</li>
+          </ul>
+        </div>
 
-          <div class="demo-panel">
-            <h3>With Version 11.2</h3>
-            <p><strong>User:</strong> “ELE.”</p>
-            <ul>
-              <li>Identifies the environment</li>
-              <li>Separates signals from noise</li>
-              <li>Finds unreconciled conditions</li>
-              <li>Returns the procedural minimum</li>
-              <li>Stops where expertise begins</li>
-            </ul>
-          </div>
+        <div class="demo-panel">
+          <h3>With Version 11.2</h3>
+          <p class="mono">INPUT: “ELE”</p>
+          <ul>
+            <li>Identifies the environment</li>
+            <li>Separates signal from noise</li>
+            <li>Finds unreconciled conditions</li>
+            <li>Returns the procedural minimum</li>
+            <li>Transfers authority back to the Pilot</li>
+          </ul>
         </div>
       </div>
     </section>
 
     <section id="applications">
-      <div class="section-kicker">Applications</div>
-      <h2 class="section-title">Built for professionals working under uncertainty.</h2>
-      <p class="section-copy">
-        Version 11.2 is designed for environments with incomplete information, conflicting reports,
-        uncertain timelines, large records, and operational pressure.
-      </p>
+      <div class="section-head">
+        <div class="section-code mono">[APPLICATIONS / HIGH-LOAD WORK]</div>
+        <div>
+          <h2>Designed for professionals operating inside incomplete information.</h2>
+          <p class="section-copy">
+            Version 11.2 supports environments with conflicting reports, uncertain timelines,
+            missing records, unresolved authority, and operational pressure.
+          </p>
+        </div>
+      </div>
 
-      <div class="applications">
+      <div class="apps">
         <div class="app">
           <strong>Emergency Medicine</strong>
-          <span>Organize incomplete histories, competing signals, handoffs, and time-sensitive uncertainty.</span>
+          <span>Incomplete histories, competing signals, handoffs, and time-sensitive uncertainty.</span>
         </div>
 
         <div class="app">
           <strong>Judges</strong>
-          <span>Orient through competing records, authority questions, timeline conflicts, and unresolved conditions.</span>
+          <span>Competing records, authority questions, timeline conflicts, and unresolved conditions.</span>
         </div>
 
         <div class="app">
           <strong>Lawyers</strong>
-          <span>Find the first unreconciled condition inside discovery, testimony, and expert records.</span>
+          <span>Discovery, testimony, expert records, contradiction review, and first-condition analysis.</span>
         </div>
 
         <div class="app">
           <strong>Clerks</strong>
-          <span>Protect custody, continuity, record movement, acknowledgments, and missing procedural nodes.</span>
+          <span>Custody, continuity, record movement, acknowledgments, and missing procedural nodes.</span>
         </div>
 
         <div class="app">
           <strong>Hospitals</strong>
-          <span>Expose patient-flow, staffing, transfer, communication, and capacity bottlenecks.</span>
+          <span>Patient flow, staffing, transfers, communications, and capacity bottlenecks.</span>
         </div>
 
         <div class="app">
           <strong>Executives</strong>
-          <span>Separate organizational noise from authority gaps, process failures, and governing constraints.</span>
+          <span>Authority gaps, communication gaps, resource conflict, and process failure.</span>
         </div>
 
         <div class="app">
           <strong>Journalists</strong>
-          <span>Separate signal from narrative through source, timeline, verification, and discrepancy review.</span>
+          <span>Source review, timeline verification, discrepancy isolation, and signal separation.</span>
         </div>
 
         <div class="app">
           <strong>Engineers</strong>
-          <span>Trace dependencies, symptoms, ownership, communication paths, and governing constraints.</span>
+          <span>Dependencies, symptoms, ownership, communication paths, and governing constraints.</span>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="final-cta">
-        <div>
-          <h2>Stop asking AI to do everything at once.</h2>
-          <p>
-            Shift cognitive gears. Preserve human authority. Stabilize complex work.
-          </p>
-        </div>
-
-        <a class="button" href="#modes">Start with the Modes</a>
+    <div class="final">
+      <div>
+        <div class="label mono">[SYSTEM PRINCIPLE]</div>
+        <h2>Do not make AI louder. Make the human-machine loop more stable.</h2>
+        <p>
+          Shift cognitive gears. Preserve authority. Restore orientation. Advance only through the procedural minimum.
+        </p>
       </div>
-    </section>
+
+      <a class="btn primary" href="#states">Inspect State Table</a>
+    </div>
 
   </main>
 
-  <footer>
-    <div>VERSION 11.2 — Human Cognitive Operating System</div>
+  <footer class="mono">
+    <div>VERSION 11.2 — HUMAN COGNITIVE OPERATING SYSTEM</div>
     <div>SOURCE · ELI · ELE · WILD CARD · UNO</div>
   </footer>
 
