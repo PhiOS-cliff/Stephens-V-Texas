@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -371,12 +372,25 @@ footer{padding:44px 6vw;border-top:1px solid var(--line);background:rgba(5,6,7,.
 @media(max-width:940px){.condition-gate,.condition-sequence{grid-template-columns:1fr}}
 
 @media(max-width:940px){header{height:auto;align-items:flex-start;flex-direction:column;gap:14px;padding:18px 6vw}nav a{margin-left:0;margin-right:16px;display:inline-block;margin-bottom:8px}.hero,.split,.split.reverse{grid-template-columns:1fr}.downloads,.cards,.beta-grid,.action-grid,.process-strip,.use-case-grid{grid-template-columns:1fr}.download.primary{grid-column:span 1}.arch-row,.use-case .before-after{grid-template-columns:1fr}.before-arrow{transform:rotate(90deg)}section{padding:66px 0}.logo-stage,.architecture,.lens-visual{min-height:390px}.logo-sub{letter-spacing:.28em}}
+
+.download[target="_blank"] small{color:var(--muted)}
+.download[target="_blank"]:hover strong{color:var(--gold)}
+
 </style>
 </head>
 <body>
 <header>
   <div class="brand"><div class="mini-mark"><span class="m-red-a"></span><span class="m-blue"></span><span class="m-red-b"></span></div>ELE BETA</div>
-  <nav><a href="#download">Download</a><a href="#not-ai">Not AI</a><a href="#cycle">Cycle</a><a href="#hud">HUD</a><a href="#condition-gate">Condition</a><a href="#professional-examples">Examples</a><a href="#does">What It Does</a><a href="#architecture">Architecture</a><a href="#beta">Beta</a><a href="#condition-gate">Condition</a><a href="#professional-examples">Examples</a><a href="#limits">Limits</a><a href="installation.html">Install</a></nav>
+  <nav>
+    <a href="#library">Library</a>
+    <a href="#not-ai">Not AI</a>
+    <a href="#cycle">Cycle</a>
+    <a href="#hud">HUD</a>
+    <a href="#condition-gate">Condition</a>
+    <a href="#professional-examples">Examples</a>
+    <a href="#limits">Limits</a>
+    <a href="installation.html">Install</a>
+  </nav>
 </header>
 <main>
 <section class="hero" id="top">
@@ -386,20 +400,45 @@ footer{padding:44px 6vw;border-top:1px solid var(--line);background:rgba(5,6,7,.
     <h1>Organize uncertainty before solving problems.</h1>
     <p class="lead">ELE is an experimental procedural architecture for AI. It is not an AI bot. It sits on top of AI, engages upon command, applies Emergency Management logic, and helps the user find the procedural minimum.</p>
     <div class="quote">AI expands. ELI isolates the condition. ELE organizes the condition. The pilot advances the condition.</div>
-    <div class="buttons"><a class="btn" href="#download">Download ELE Beta</a><a class="btn secondary" href="installation.html">Installation Guide</a></div>
+    <div class="buttons"><a class="btn" href="#library">Open ELE Beta Library</a><a class="btn secondary" href="installation.html">Installation Guide</a></div>
   </div>
   <div class="logo-stage" aria-label="ELE logo mark"><div class="mark"><div class="source-bar"></div><div class="beam-red-top"></div><div class="beam-blue"></div><div class="beam-red-bottom"></div><div class="origin-glow"></div></div><div class="logo-word">ELE</div><div class="logo-sub">EMERGENCY LOGIC ENGINE</div></div>
 </section>
-<section class="download-strip" id="download">
-  <div class="eyebrow">Beta Download</div><h2>Download the architecture. Test the system.</h2>
-  <p>ELE is in Beta. The goal is to find bugs, observe useful sessions, and refine the Universal Kernel. The files below are placeholders until your final ZIP and documents are uploaded.</p>
+<section class="download-strip" id="library">
+  <div class="eyebrow">ELE Beta Library</div>
+  <h2>Open the architecture. Test the system.</h2>
+  <p>Archive.org is the public ELE library. The website explains the system. The Archive library stores the working documents. Open each document below, download it from Archive.org, and test the Beta architecture in real conditions.</p>
+
   <div class="downloads">
-    <a class="download primary" href="downloads/ele-beta-package.zip" download><strong>Download Everything</strong><small>Operations manual, doctrine, master kernel, bootloader, and installation manual.</small></a>
-    <a class="download" href="downloads/operations-manual.pdf" download><strong>Operations Manual</strong><small>A documented environment used to demonstrate ELE operating inside a real condition.</small></a>
-    <a class="download" href="downloads/doctrine.pdf" download><strong>Doctrine</strong><small>Emergency Management procedures and operating logic prepared for machine consumption.</small></a>
-    <a class="download" href="downloads/master-kernel.pdf" download><strong>Master Kernel</strong><small>The operating constitution that governs classification, repositioning, and advancement.</small></a>
-    <a class="download" href="downloads/bootloader.pdf" download><strong>Bootloader</strong><small>The activation layer that switches AI into ELI and ELE operating modes.</small></a>
-    <a class="download" href="installation.html"><strong>Installation Guide</strong><small>How to upload files, activate ELI, enter ELE, and return to SOURCE.</small></a>
+    <a class="download primary" href="https://archive.org/details/ele-beta-0.0-general-map" target="_blank" rel="noopener">
+      <strong>Open Full Archive Library</strong>
+      <small>View the ELE Beta 0.0 collection on Archive.org.</small>
+    </a>
+
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BGENERAL%20MAP%5D.pdf" target="_blank" rel="noopener">
+      <strong>General Map</strong>
+      <small>A demonstration environment showing Emergency Logic operating inside a real condition. ↗ Open Archive</small>
+    </a>
+
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BLOGIC%5D.pdf" target="_blank" rel="noopener">
+      <strong>Doctrine Logic</strong>
+      <small>Emergency Management logic translated into machine readable architecture. ↗ Open Archive</small>
+    </a>
+
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BEngine_Kernel%5D.pdf" target="_blank" rel="noopener">
+      <strong>Engine Kernel</strong>
+      <small>The operational engine that organizes, repositions, and advances conditions. ↗ Open Archive</small>
+    </a>
+
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELI%26ELE_BETA%5D%5B0.0%5D%5BBootloader%20Prompt%5D.pdf" target="_blank" rel="noopener">
+      <strong>Bootloader</strong>
+      <small>The activation layer that switches between AI, ELI, and ELE operating modes. ↗ Open Archive</small>
+    </a>
+
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/CONTROLS_TEXT.pdf" target="_blank" rel="noopener">
+      <strong>Controls</strong>
+      <small>Commands and instructions for entering, exiting, and operating the system. ↗ Open Archive</small>
+    </a>
   </div>
 </section>
 
@@ -811,7 +850,7 @@ footer{padding:44px 6vw;border-top:1px solid var(--line);background:rgba(5,6,7,.
   <p class="statement">AI expands. ELI isolates. ELE organizes. The pilot advances.</p>
   <p>ELE is a procedural architecture under active testing. It does not replace professional judgment, legal advice, medical judgment, engineering judgment, emergency command authority, or human decision making.</p>
   <p>It organizes visibility so the operator can determine what must be determined next, identify the procedural minimum required for advancement, and cycle back to ordinary AI whenever the Emergency Logic overlay is no longer needed.</p>
-  <div class="buttons"><a class="btn" href="#download">Download ELE Beta</a><a class="btn secondary" href="installation.html">Installation Guide</a></div>
+  <div class="buttons"><a class="btn" href="#library">Open ELE Beta Library</a><a class="btn secondary" href="installation.html">Installation Guide</a></div>
 </section>
 </main>
 <footer><p>Operations Manuals ↔ Doctrine ↔ Master Kernel ↔ Bootloader → ELI → ELE → Pilot</p><p>Emergency Logic Engine Beta</p></footer>
