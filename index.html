@@ -6,9 +6,12 @@
 <title>ELE Beta | Emergency Logic Engine</title>
 <style>
 :root{--black:#050607;--panel:rgba(16,21,27,.72);--panel2:rgba(23,29,37,.88);--white:#f4f1e8;--muted:#aeb6bd;--line:rgba(244,241,232,.16);--blue:#2f5daa;--blue2:#4a8fd8;--red:#e85b38;--red2:#ff7b56;--gold:#d9b56d;--green:#9cc8b7}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--white);background:radial-gradient(circle at 16% 14%,rgba(74,143,216,.18),transparent 28%),radial-gradient(circle at 84% 14%,rgba(232,91,56,.12),transparent 24%),linear-gradient(180deg,#050607 0%,#090d12 45%,#050607 100%);line-height:1.55}
-header{position:sticky;top:0;z-index:100;min-height:74px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:rgba(5,6,7,.78);backdrop-filter:blur(18px)}
-/* (Rest of the original beautiful CSS is preserved in the file) */
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--white);background:radial-gradient(circle at 16% 14%,rgba(74,143,216,.18),transparent 28%),radial-gradient(circle at 84% 14%,rgba(232,91,56,.12),transparent 24%),linear-gradient(180deg,#050607 0%,#090d12 45%,#050607 100%);line-height:1.55}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:34px 34px;opacity:.34;z-index:-1}
+header{position:sticky;top:0;z-index:100;min-height:74px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:rgba(5,6,7,.78);backdrop-filter:blur(18px)}.brand{display:flex;align-items:center;gap:13px;letter-spacing:.2em;font-size:.88rem;color:var(--white);white-space:nowrap}.mini-mark{width:34px;height:24px;position:relative}.mini-mark:before{content:"";position:absolute;left:2px;top:0;width:4px;height:24px;border-radius:3px;background:var(--white)}.mini-mark span{position:absolute;left:8px;top:11px;height:3px;width:25px;border-radius:99px;transform-origin:left center}.m-blue{background:var(--blue2)}.m-red-a{background:var(--red2);transform:rotate(-28deg)}.m-red-b{background:var(--red2);transform:rotate(28deg)}nav a{color:var(--muted);text-decoration:none;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-left:22px}nav a:hover{color:var(--white)}
+main{width:min(1220px,88vw);margin:0 auto}section{padding:62px 0;border-top:1px solid var(--line)}.hero{min-height:calc(100vh - 74px);border-top:0;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}.eyebrow{color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-size:.74rem;font-weight:700;margin-bottom:22px}h1{font-size:clamp(3.8rem,7.5vw,7.2rem);line-height:.9;letter-spacing:-.07em;margin:0 0 26px;font-weight:750}h2{font-size:clamp(2.2rem,4.8vw,4.6rem);line-height:1;letter-spacing:-.05em;margin:0 0 22px;font-weight:750}
+.download-strip{padding-top:36px}.downloads{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px}.download{text-decoration:none;color:var(--white);border:1px solid var(--line);border-radius:22px;padding:20px;background:rgba(16,21,27,.72);transition:all .18s}.download:hover{transform:translateY(-4px);border-color:var(--gold)}.download.primary{grid-column:span 2;background:radial-gradient(circle at 18% 25%,rgba(255,123,86,.18),transparent 26%),radial-gradient(circle at 84% 70%,rgba(74,143,216,.18),transparent 30%),rgba(16,21,27,.85)}
+.stack-box{border:1px solid var(--gold);border-radius:20px;padding:24px;background:rgba(217,181,109,.08);margin:32px 0}
+.stack-item{font-size:1.05rem;padding:8px 0;border-bottom:1px solid var(--line)}.stack-item:last-child{border:none;font-weight:700;color:var(--gold)}
 </style>
 </head>
 <body>
@@ -16,11 +19,11 @@ header{position:sticky;top:0;z-index:100;min-height:74px;padding:0 6vw;display:f
   <div class="brand"><div class="mini-mark"><span class="m-red-a"></span><span class="m-blue"></span><span class="m-red-b"></span></div>ELE BETA</div>
   <nav>
     <a href="#library">Library</a>
+    <a href="#stack">Recommended Stack</a>
     <a href="#what">What Is ELE</a>
-    <a href="#cycle">Cycle</a>
     <a href="#how">How to Use</a>
+    <a href="#cycle">Cycle</a>
     <a href="#limits">Limits</a>
-    <a href="installation.html">Install</a>
   </nav>
 </header>
 
@@ -30,82 +33,97 @@ header{position:sticky;top:0;z-index:100;min-height:74px;padding:0 6vw;display:f
     <div class="beta-pill"><span class="beta-dot"></span>Architecture Under Active Testing</div>
     <div class="eyebrow">Emergency Logic Engine</div>
     <h1>Organize uncertainty before solving problems.</h1>
-    <p class="lead">ELE is a procedural architecture that sits on top of AI. Activate it with the Bootloader to apply Emergency Management logic and find the next procedural minimum.</p>
-    <div class="buttons">
-      <a class="btn" href="#library">Open Library</a>
-      <a class="btn secondary" href="installation.html">Installation Guide</a>
-    </div>
+    <p class="lead">ELE is an experimental procedural architecture for AI. It sits on top of AI, engages on command, and applies Emergency Management logic to help you find the procedural minimum.</p>
+    <div class="buttons"><a class="btn" href="#library">Open Library</a><a class="btn secondary" href="installation.html">Installation Guide</a></div>
   </div>
-  <div class="logo-stage">... (logo preserved) ...</div>
+  <div class="logo-stage" aria-label="ELE logo mark"><div class="mark"><div class="source-bar"></div><div class="beam-red-top"></div><div class="beam-blue"></div><div class="beam-red-bottom"></div><div class="origin-glow"></div></div><div class="logo-word">ELE</div><div class="logo-sub">EMERGENCY LOGIC ENGINE</div></div>
 </section>
 
-<!-- LIBRARY SECTION -->
 <section class="download-strip" id="library">
   <div class="eyebrow">ELE Beta Library</div>
   <h2>Open the architecture. Test the system.</h2>
-  <p>Archive.org preserves the official documents. Some components (like the Bootloader) evolve independently.</p>
+  <p>Archive.org is the public ELE library. Download the files below and follow the recommended stack order.</p>
 
   <div class="downloads">
-    <a class="download primary" href="https://archive.org/details/ele-beta-0.0-general-map" target="_blank">
+    <a class="download primary" href="https://archive.org/details/ele-beta-0.0-general-map" target="_blank" rel="noopener">
       <strong>↓ Download All Core Files</strong>
-      <small>One-click access to the full Core Archive Library</small>
+      <small>Full Core Archive Library (Engine, Map, Logic)</small>
+    </a>
+
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BEngine_Kernel%5D.pdf" target="_blank">
+      <strong>Engine Kernel 0.0</strong>
+    </a>
+
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BGENERAL%20MAP%5D.pdf" target="_blank">
+      <strong>General Map 0.0</strong>
+    </a>
+
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/%5BELE_BETA%5D%5B0.0%5D%5BLOGIC%5D.pdf" target="_blank">
+      <strong>Doctrine Logic 0.0</strong>
     </a>
 
     <a class="download" href="https://archive.org/details/eli-ele-beta-0.1-bootloader-prompt" target="_blank">
-      <strong>Bootloader V0.1</strong>
-      <small>The activation layer (most important file)</small>
+      <strong>Bootloader Prompt V0.1</strong>
+      <small>← Most Recent</small>
     </a>
 
-    <!-- Other individual links preserved -->
+    <a class="download" href="https://archive.org/details/ele-beta-0.0-general-map/CONTROLS_TEXT.pdf" target="_blank">
+      <strong>Controls</strong>
+    </a>
   </div>
 </section>
 
-<!-- WHAT IS / IS NOT -->
+<!-- MOST RECENT STACK -->
+<section id="stack">
+  <div class="eyebrow">Recommended Stack</div>
+  <h2>Most Accurate Upload Sequence</h2>
+  <p>Load these documents in this order for the current best performance:</p>
+  
+  <div class="stack-box">
+    <div class="stack-item">1. Engine Kernel 0.0</div>
+    <div class="stack-item">2. General Map 0.0</div>
+    <div class="stack-item">3. Doctrine Logic 0.0</div>
+    <div class="stack-item">4. <strong>Bootloader Prompt V0.1</strong> ← Most Recent</div>
+  </div>
+  <p><small>Start with the Bootloader V0.1 prompt in your AI session, then declare your condition.</small></p>
+</section>
+
 <section id="what">
   <div class="eyebrow">What ELE Is and Is Not</div>
   <div class="identity-grid">
     <div class="identity-card">
       <strong>ELE IS</strong>
-      <h3>A procedural overlay on top of AI</h3>
-      <p>• Uses Emergency Management logic<br>• Organizes messy conditions<br>• Finds the next procedural minimum<br>• Helps you stay in control</p>
+      <h3>A procedural architecture</h3>
+      <p>Sits on top of AI • Applies Emergency Management logic • Organizes conditions • Finds the next procedural minimum</p>
     </div>
     <div class="identity-card">
       <strong>ELE IS NOT</strong>
-      <h3>An AI chatbot or replacement</h3>
-      <p>• Not a general chatbot<br>• Does not give legal/medical advice<br>• Does not decide for you<br>• Does not chase novelty or opinions</p>
+      <h3>An AI chatbot</h3>
+      <p>Not a replacement for AI • Does not give legal/medical advice • Does not assign blame or make decisions for you</p>
     </div>
   </div>
 </section>
 
-<!-- HOW TO USE + BOOTLOADER EXAMPLE -->
 <section id="how">
   <div class="eyebrow">How to Use</div>
-  <h2>Simple 4-Step Process</h2>
-  <ol>
-    <li><strong>Download</strong> the Bootloader V0.1 and Controls from the Library above.</li>
-    <li><strong>Copy</strong> the Bootloader prompt into any AI chat (ChatGPT, Grok, Claude, etc.).</li>
-    <li><strong>Activate</strong> by declaring your condition.</li>
-    <li><strong>Cycle</strong> between SOURCE → ELI → ELE as needed.</li>
-  </ol>
-
-  <div class="panel" style="margin-top:32px">
-    <strong>Example Bootloader Activation</strong>
-    <pre style="background:rgba(0,0,0,.4);padding:18px;border-radius:12px;overflow:auto;font-size:.95rem">
-I am [Your Role, e.g. Emergency Manager / Lawyer / Property Owner].
-The condition is: [Describe the situation clearly].
-
-ENTER ELE
-    </pre>
-    <p><small>After pasting the full Bootloader prompt (from the PDF), just declare your role + condition and type <code>ENTER ELE</code>.</small></p>
-  </div>
+  <h2>Quick Start</h2>
+  <p>1. Download the stack above.<br>
+     2. Paste the Bootloader V0.1 prompt into your AI chat.<br>
+     3. Declare your role and condition.<br>
+     4. Type <code>ENTER ELE</code> to activate.</p>
 </section>
 
-<!-- Cycle, Limits, and closing statement preserved and cleaned up -->
+<section id="cycle">
+  <div class="eyebrow">Mode Cycling</div>
+  <h2>Cycle between modes</h2>
+  <p><strong>SOURCE</strong> → <strong>ELI</strong> → <strong>ELE</strong> → <strong>EXIT ELE</strong></p>
+</section>
+
+<section id="statement">
+  <p class="statement">AI expands. ELI isolates. ELE organizes. The pilot advances.</p>
+</section>
 </main>
 
-<footer>
-  <p>Operations Manuals ↔ Doctrine ↔ Master Kernel ↔ Bootloader V0.1 → ELI → ELE → Pilot</p>
-  <p>Emergency Logic Engine Beta</p>
-</footer>
+<footer><p>Emergency Logic Engine Beta • Follow the Recommended Stack</p></footer>
 </body>
 </html>
